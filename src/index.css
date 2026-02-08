@@ -1,0 +1,117 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+}
+
+:root {
+  --radius: 0.5rem; /* Sedikit lebih kotak untuk neo-brutalism */
+
+  /* === PALET DARI GAMBAR 1 === */
+  /* Main Background Page (Hijau #0F8C3C) */
+  --background: #0F8C3C; 
+  --foreground: #EBFFDE;
+
+  /* Card Login (Off-White #EBFFDE) */
+  --card: #EBFFDE;
+  --card-foreground: #0F1720; /* Teks hitam di card terang */
+
+  --popover: #EBFFDE;
+  --popover-foreground: #0F1720;
+
+  /* Primary Button (Kuning Promo #FFD166 agar kontras dengan background hijau) */
+  --primary: #FFD166;
+  --primary-foreground: #0F1720;
+
+  /* Secondary (Teal #00B3A6) */
+  --secondary: #00B3A6;
+  --secondary-foreground: #FFFFFF;
+
+  --muted: #0F7846;
+  --muted-foreground: #EBFFDE;
+
+  --accent: #4F46E5; /* Purple */
+  --accent-foreground: #FFFFFF;
+
+  --destructive: #E11D48;
+  --destructive-foreground: #FFFFFF;
+
+  /* Border Outline (Hitam Gelap #0F1720) */
+  --border: #0F1720;
+  --input: #0F1720;
+  --ring: #0F1720;
+}
+
+.dark {
+    /* Mode gelap opsional, disesuaikan agar tetap terbaca */
+  --background: #0F1720;
+  --foreground: #EBFFDE;
+  --card: #0F7846;
+  --card-foreground: #EBFFDE;
+  --primary: #FFD166;
+  --primary-foreground: #0F1720;
+  --border: #EBFFDE;
+  --input: #EBFFDE;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  
+  /* Utility class khusus untuk input agar terlihat neo-brutal */
+  input {
+     @apply border-2 border-[var(--border)] shadow-[4px_4px_0px_0px_rgba(15,23,32,1)] focus:translate-x-[2px] focus:translate-y-[2px] focus:shadow-none transition-all duration-200;
+  }
+}
+
+/* Custom Scrollbar Neo-Brutalism */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #EBFFDE; /* Warna terang (Card bg) */
+  border-left: 2px solid #0F1720;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #00B3A6; /* Warna Teal */
+  border: 2px solid #0F1720; /* Border hitam tebal */
+  border-radius: 0px; /* Kotak (Brutalist) */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #FFD166; /* Kuning saat di-hover */
+}
