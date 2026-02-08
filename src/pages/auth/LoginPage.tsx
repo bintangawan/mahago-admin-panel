@@ -10,17 +10,17 @@ import { neoToast } from "@/components/ui/neo-toast";
 /* =================================================
    🔴 API AUTH (UNCOMMENT SAAT API HIDUP)
 ================================================= */
-// import { authService } from "@/api/auth.service";
+import { authService } from "@/api/auth.service";
 
 /* =================================================
    🟢 LOCAL MOCK ADMIN (SEMENTARA)
 ================================================= */
-const MOCK_ADMIN = {
-  email: "admin@mahago.id",
-  password: "admin123",
-  access_token: "local-admin-access-token",
-  refresh_token: "local-admin-refresh-token",
-};
+// const MOCK_ADMIN = {
+//   email: "admin@mahago.id",
+//   password: "admin123",
+//   access_token: "local-admin-access-token",
+//   refresh_token: "local-admin-refresh-token",
+// };
 
 export default function LoginPage() {
   const navigate = useNavigate();
@@ -43,7 +43,7 @@ export default function LoginPage() {
       /* ============================================
          🔴 API MODE (UNCOMMENT SAAT BACKEND SIAP)
       ============================================ */
-      /*
+      
       const res = await authService.login({
         email,
         password,
@@ -55,29 +55,29 @@ export default function LoginPage() {
       neoToast.success("Login berhasil");
       navigate("/", { replace: true });
       return;
-      */
+      
 
       /* ============================================
          🟢 LOCAL MODE (SEKARANG DIPAKAI)
       ============================================ */
-      if (
-        email === MOCK_ADMIN.email &&
-        password === MOCK_ADMIN.password
-      ) {
-        localStorage.setItem(
-          "access_token",
-          MOCK_ADMIN.access_token
-        );
-        localStorage.setItem(
-          "refresh_token",
-          MOCK_ADMIN.refresh_token
-        );
+      // if (
+      //   email === MOCK_ADMIN.email &&
+      //   password === MOCK_ADMIN.password
+      // ) {
+      //   localStorage.setItem(
+      //     "access_token",
+      //     MOCK_ADMIN.access_token
+      //   );
+      //   localStorage.setItem(
+      //     "refresh_token",
+      //     MOCK_ADMIN.refresh_token
+      //   );
 
-        neoToast.success("Mantap! Login berhasil (LOCAL MODE)");
-        navigate("/", { replace: true });
-      } else {
-        neoToast.error("Email atau password salah!");
-      }
+      //   neoToast.success("Mantap! Login berhasil (LOCAL MODE)");
+      //   navigate("/", { replace: true });
+      // } else {
+      //   neoToast.error("Email atau password salah!");
+      // }
     } catch (err) {
       console.error(err);
       neoToast.error("Login gagal, coba lagi.");
