@@ -13,6 +13,10 @@ import DriverVerificationPage from "@/pages/drivers/DriverVerificationPage";
 // Topup
 import TopupListPage from "@/pages/topup/TopupListPage";
 
+// Campus & Weather (BARU)
+import CampusLocationPage from "@/pages/campus/CampusLocationPage";
+import WeatherControlPage from "@/pages/weather/WeatherControlPage";
+
 import NotFound from "@/pages/NotFound";
 
 /* =============================
@@ -66,6 +70,12 @@ export default function App() {
 
         {/* Topup */}
         <Route path="/topup" element={<TopupListPage />} />
+
+        {/* Campus */}
+        <Route path="/campus" element={<CampusLocationPage />} />
+
+        {/* Weather */}
+        <Route path="/weather" element={<WeatherControlPage />} />
       </Route>
 
       {/* =============================

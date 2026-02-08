@@ -7,9 +7,14 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { neoToast } from "@/components/ui/neo-toast";
 
-// =============================
-// 🟢 LOCAL MOCK ADMIN
-// =============================
+/* =================================================
+   🔴 API AUTH (UNCOMMENT SAAT API HIDUP)
+================================================= */
+// import { authService } from "@/api/auth.service";
+
+/* =================================================
+   🟢 LOCAL MOCK ADMIN (SEMENTARA)
+================================================= */
 const MOCK_ADMIN = {
   email: "admin@mahago.id",
   password: "admin123",
@@ -35,13 +40,38 @@ export default function LoginPage() {
     try {
       setLoading(true);
 
-      // --- LOGIC AUTH ---
+      /* ============================================
+         🔴 API MODE (UNCOMMENT SAAT BACKEND SIAP)
+      ============================================ */
+      /*
+      const res = await authService.login({
+        email,
+        password,
+      });
+
+      localStorage.setItem("access_token", res.access_token);
+      localStorage.setItem("refresh_token", res.refresh_token);
+
+      neoToast.success("Login berhasil");
+      navigate("/", { replace: true });
+      return;
+      */
+
+      /* ============================================
+         🟢 LOCAL MODE (SEKARANG DIPAKAI)
+      ============================================ */
       if (
         email === MOCK_ADMIN.email &&
         password === MOCK_ADMIN.password
       ) {
-        localStorage.setItem("access_token", MOCK_ADMIN.access_token);
-        localStorage.setItem("refresh_token", MOCK_ADMIN.refresh_token);
+        localStorage.setItem(
+          "access_token",
+          MOCK_ADMIN.access_token
+        );
+        localStorage.setItem(
+          "refresh_token",
+          MOCK_ADMIN.refresh_token
+        );
 
         neoToast.success("Mantap! Login berhasil (LOCAL MODE)");
         navigate("/", { replace: true });
@@ -58,8 +88,10 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-background p-4 relative overflow-hidden">
-      
-      {/* DEKORASI BACKGROUND */}
+
+      {/* =============================
+         DEKORASI BACKGROUND
+      ============================== */}
       <div
         className="absolute top-10 left-10 w-24 h-24 bg-primary rounded-full 
         border-4 border-border shadow-[4px_4px_0px_0px_var(--border)] 
@@ -73,7 +105,9 @@ export default function LoginPage() {
         hidden md:block"
       />
 
-      {/* LOGIN CARD */}
+      {/* =============================
+         LOGIN CARD
+      ============================== */}
       <form
         onSubmit={handleSubmit}
         className="
@@ -81,23 +115,22 @@ export default function LoginPage() {
           bg-card text-card-foreground
           border-4 border-border rounded-xl
           shadow-[8px_8px_0px_0px_var(--border)]
-          transition-transform duration-300
         "
       >
         {/* HEADER & LOGO */}
         <div className="text-center flex flex-col items-center space-y-4">
           <div className="inline-block px-4 py-1 bg-secondary text-white 
-            border-2 border-border font-bold rounded-full mb-2
+            border-2 border-border font-bold rounded-full
             shadow-[2px_2px_0px_0px_var(--border)]">
             ADMIN ACCESS
           </div>
 
-          {/* LOGO IMAGE */}
-          <div className="w-48 h-auto mx-auto mb-2">
+          <div className="w-48 h-auto mx-auto">
             <img 
-                src="/images/mahagologo.png" 
-                alt="Mahago Logo" 
-                className="w-full h-full object-contain drop-shadow-[2px_2px_0px_rgba(0,0,0,1)]"
+              src="/images/mahagologo.png" 
+              alt="Mahago Logo" 
+              className="w-full h-full object-contain 
+              drop-shadow-[2px_2px_0px_rgba(0,0,0,1)]"
             />
           </div>
 
@@ -106,35 +139,44 @@ export default function LoginPage() {
           </p>
         </div>
 
-        {/* INPUTS */}
+        {/* =============================
+            INPUTS
+        ============================== */}
         <div className="space-y-5 pt-2">
           <div className="space-y-2">
-            <Label className="text-base font-bold text-border">Email</Label>
-            {/* Fix Placeholder: Hapus fix height (h-12) jika mengganggu, ganti dengan padding (py-3) */}
+            <Label className="text-base font-bold text-border">
+              Email
+            </Label>
             <Input
               type="email"
               placeholder="admin@mahago.id"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               disabled={loading}
-              className="bg-white text-lg py-6 px-4 border-2 border-border rounded-lg placeholder:text-gray-400"
+              className="bg-white text-lg py-6 px-4 
+              border-2 border-border rounded-lg placeholder:text-[#0F1720]"
             />
           </div>
 
           <div className="space-y-2">
-            <Label className="text-base font-bold text-border">Password</Label>
+            <Label className="text-base font-bold text-border">
+              Password
+            </Label>
             <Input
               type="password"
-              placeholder="admin123"
+              placeholder="******"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               disabled={loading}
-              className="bg-white text-lg py-6 px-4 border-2 border-border rounded-lg placeholder:text-gray-400"
+              className="bg-white text-lg py-6 px-4 
+              border-2 border-border rounded-lg placeholder:text-[#0F1720]"
             />
           </div>
         </div>
 
-        {/* BUTTON */}
+        {/* =============================
+            BUTTON
+        ============================== */}
         <Button
           type="submit"
           disabled={loading}
